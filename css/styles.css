@@ -6,7 +6,9 @@
   --primary-fw-title: 700;
   --bgc-our-team: rgba(245, 244, 250, 1);
   --bgc-secondary: rgba(47, 48, 58, 1);
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 body {
   background-color: var(--primary-white-color);
   color: var(--primary-color);
@@ -107,6 +109,7 @@ img {
   font-size: 14px;
   line-height: 1.2;
   letter-spacing: 0.02em;
+  transition: color 250ms var(--timing-function);
 }
 .site-nav-link:hover,
 .site-nav-link:focus {
@@ -123,7 +126,7 @@ img {
   position: absolute;
   width: 100%;
   height: 4px;
-  bottom: -100%;
+  bottom: -125%;
   left: 0;
 
   background-color: var(--accent-color);
@@ -143,6 +146,7 @@ img {
   align-items: center;
   color: var(--primary-color);
   font-weight: 500;
+  transition: color 250ms var(--timing-function);
 }
 .contacts-info:hover,
 .contacts-info:focus {
@@ -223,6 +227,8 @@ img {
   text-align: center;
   letter-spacing: 0.03em;
   cursor: pointer;
+  transition: color 250ms var(--timing-function), background-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 
 .filter-button:last-child {
@@ -304,9 +310,6 @@ img {
   margin-right: 0px;
 }
 
-.work-example {
-  position: relative;
-}
 .work-text {
   position: absolute;
   padding-top: 27px;
@@ -391,6 +394,7 @@ img {
   background: #ffffff;
   border-radius: 50%;
   color: #afb1b8;
+  transition: background-color 250ms var(--timing-function);
 }
 
 .socials-link:hover,
@@ -400,6 +404,7 @@ img {
 
 .socials-icon {
   fill: currentColor;
+  transition: fill 250ms var(--timing-function);
 }
 
 .socials-link:hover .socials-icon,
@@ -425,6 +430,7 @@ img {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   color: #afb1b8;
+  transition: color 250ms var(--timing-function), border 250ms var(--timing-function);
 }
 
 .clients-link:hover,
@@ -469,9 +475,11 @@ img {
 }
 .address-street-list {
   color: rgba(255, 255, 255, 1);
+  transition: color 250ms var(--timing-function);
 }
 .footer-contacts {
   color: rgba(255, 255, 255, 0.6);
+  transition: color 250ms var(--timing-function);
 }
 
 .address-street-list:hover,
@@ -494,17 +502,36 @@ img {
 .socials-link.footer-socials-link {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
+  transition: background-color 250ms var(--timing-function);
 }
 
 .socials-link:hover,
 .socials-link:focus {
-  background: var(--accent-color);
+  background-color: var(--accent-color);
 }
 
 .footer-socials {
   margin-left: 70px;
 }
 
+/* BACKDROP/MODAL */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+  width: 528px;
+  height: 581px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
 /* PORTFOLIO */
 
 .portfolio-cards {
@@ -531,6 +558,7 @@ img {
 
 .portfolio-link {
   display: block;
+  transition: box-shadow 250ms var(--timing-function);
 }
 .portfolio-link:hover,
 .portfolio-link:focus {
@@ -538,16 +566,21 @@ img {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.portfolio-link:hover::before,
-.portfolio-link:focus::before {
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
   opacity: 1;
+  transform: translateY(0);
 }
 .portfolio-link:hover .card-description,
 .portfolio-link:focus .card-description {
   opacity: 1;
 }
 
-.portfolio-link::before {
+.try {
+  overflow: hidden;
+}
+
+.portfolio-overlay {
   position: absolute;
   content: '';
   display: inline-block;
@@ -555,8 +588,10 @@ img {
   left: 0;
   width: 100%;
   height: 294px;
-  opacity: 0;
+  transform: translateY(100%);
+  /* opacity: 0; */
   background-color: var(--accent-color);
+  transition: opacity 250ms var(--timing-function), transform 250ms var(--timing-function);
 }
 .portfolio-image {
   position: relative;
@@ -574,6 +609,7 @@ img {
   letter-spacing: 0.03em;
   color: #ffffff;
   opacity: 0;
+  transition: opacity 250ms var(--timing-function);
 }
 .cardset-title {
   margin-bottom: 4px;
